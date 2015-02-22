@@ -4,11 +4,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/gameforachange"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".Splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -20,12 +20,24 @@
         </activity>
 
         <activity
-            android:name=".Activity2"
+            android:name=".MainMenu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
-                <action android:name="oakland.edu.gameforachange.Activity2" />
+                <action android:name="oakland.edu.gameforachange.MainMenu" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".UserSelectionMenu"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="oakland.edu.gameforachange.UserSelectionMenu" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -1,0 +1,70 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc"
+    tools:context=".FullscreenActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay" android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button android:id="@+id/dummy_button" style="?metaButtonBarButtonStyle"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="@string/dummy_button"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:weightSum="1">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Task"
+                    android:id="@+id/chooseTaskButton"
+                    android:layout_gravity="bottom"
+                    android:longClickable="false"
+                    android:layout_weight="0.35" />
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:text="Assign Me A Task"
+                    android:id="@+id/button"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="0.63" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
+        android:layout_height="269dp" android:keepScreenOn="true" android:textColor="#33b5e5"
+        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
+        android:text="@string/dummy_content"
+        android:layout_gravity="right|top"
+        android:visibility="gone" />
+
+</FrameLayout>

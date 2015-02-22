@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ff5b64cc">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="674dp">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1"
+            android:layout_gravity="center_horizontal|top"
+            android:id="@+id/linearLayout" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Task"
+                android:id="@+id/button"
+                android:layout_gravity="bottom"
+                android:longClickable="false"
+                android:layout_weight="0.5"
+                android:textColor="#FF101010" />
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Assign Me A Task"
+                android:id="@+id/button2"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

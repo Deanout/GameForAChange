@@ -22,9 +22,6 @@ import android.widget.Button;
 public class MainMenu extends Activity implements View.OnClickListener {
     public Button testButton;
 
-
-
-
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.

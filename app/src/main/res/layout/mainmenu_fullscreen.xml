@@ -52,7 +52,7 @@
                 android:text="Assign Me A Task"
                 android:id="@+id/assignTaskButton"
                 android:layout_gravity="bottom"
-                android:layout_weight="0.5"
+                android:layout_weight="0.44"
                 android:background="#ffffffff"
                 android:textColor="#FF101010" />
 

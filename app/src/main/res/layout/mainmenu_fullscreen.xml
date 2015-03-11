@@ -52,7 +52,7 @@
                 android:text="Assign Me A Task"
                 android:id="@+id/assignTaskButton"
                 android:layout_gravity="bottom"
-                android:layout_weight="0.44"
+                android:layout_weight="0.31"
                 android:background="#ffffffff"
                 android:textColor="#FF101010" />
 
@@ -62,7 +62,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="650dp"
+            android:layout_height="wrap_content"
             android:showDividers="beginning"
             android:id="@+id/streakDisplay"
             android:weightSum="1"
@@ -71,7 +71,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="473dp">
 
                 <LinearLayout
                     android:orientation="horizontal"

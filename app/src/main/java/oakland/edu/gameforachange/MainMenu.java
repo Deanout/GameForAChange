@@ -21,6 +21,7 @@ import android.widget.Button;
  */
 public class MainMenu extends Activity implements View.OnClickListener {
     public Button testButton;
+    public Button assignTaskButton;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -122,6 +123,9 @@ public class MainMenu extends Activity implements View.OnClickListener {
         testButton = (Button)findViewById(R.id.chooseTaskButton);
         testButton.setOnClickListener(this);
 
+        assignTaskButton = (Button)findViewById(R.id.assignTaskButton);
+        assignTaskButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -172,11 +176,18 @@ public class MainMenu extends Activity implements View.OnClickListener {
         startActivity(new Intent("oakland.edu.gameforachange.UserSelectionMenu"));
     }
 
+    private void assignTaskButtonClick() {
+        startActivity(new Intent("oakland.edu.gameforachange.AssignUserMenu"));
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.chooseTaskButton:
                 testButtonClick();
+                break;
+            case R.id.assignTaskButton:
+                assignTaskButtonClick();
                 break;
         }
     }

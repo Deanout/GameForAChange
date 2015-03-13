@@ -21,6 +21,7 @@ import java.util.ArrayList;
  * @author Dean DeHart
  * @version v2.1
  * @since v1.0 150221
+ *
  */
 public class UserSelectionMenu extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
     /**

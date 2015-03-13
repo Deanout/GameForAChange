@@ -11,6 +11,7 @@ import android.widget.ImageView;
  * @author Dean DeHart
  * @version v2.1
  * @since v1.0 150221
+ *
  */
 public class Splash extends Activity implements View.OnClickListener {
     public ImageView proceedButton;

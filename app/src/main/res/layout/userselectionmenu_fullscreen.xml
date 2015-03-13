@@ -6,20 +6,25 @@
     android:gravity="bottom"
     android:weightSum="1">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1.00"
-        android:id="@+id/listLayout">
+        android:id="@+id/scrollView" >
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="454dp"
-            android:id="@+id/taskSelectionBox"
-            android:choiceMode="singleChoice"
-            android:layout_gravity="bottom" />
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.00"
+            android:id="@+id/listLayout">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="501dp"
+                android:id="@+id/taskSelectionBox"
+                android:choiceMode="singleChoice" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:orientation="horizontal"

@@ -17,9 +17,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Created by Dean on 2/22/2015.
+ * Created by Dean on 2/21/2015.
+ * @author Dean DeHart
+ * @version v2.1
+ * @since v1.0 150221
  */
 public class DisplayCurrentTaskMenu extends Activity implements View.OnClickListener {
+    /**
+     * This class is largely still a WiP. No comments yet.
+     */
     private Button btnDecrease;
     private Button btnIncrease;
     private Button btnGetInt;
@@ -35,6 +41,10 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     public String testWrite2 = "42";
     public int myInteger;
 
+    /**
+     * Creates the activity. -Dean
+     * @param icicle
+     */
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);

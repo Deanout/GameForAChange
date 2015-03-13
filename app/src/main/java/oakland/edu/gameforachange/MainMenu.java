@@ -14,13 +14,19 @@ import android.widget.Button;
 
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see SystemUiHider
+ * Created by Dean on 2/21/2015.
+ * @author Dean DeHart
+ * @version v2.2 150313
+ * @since v1.0 150221
  */
 public class MainMenu extends Activity implements View.OnClickListener {
-    public Button testButton;
+    /**
+     * This button takes you to the UserSelectionMenu. -Dean
+     */
+    public Button chooseTaskButton;
+    /**
+     * This button automatically assigns you a task based on a pRNG. -Dean
+     */
     public Button assignTaskButton;
 
     /**
@@ -51,10 +57,16 @@ public class MainMenu extends Activity implements View.OnClickListener {
      */
     private SystemUiHider mSystemUiHider;
 
+    /**
+     * Creates the activity. -Dean
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        /**
+         * Sets the current view to the mainmenu_fullscreen.xml's specifications. -Dean
+         */
         setContentView(R.layout.mainmenu_fullscreen);
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
@@ -119,11 +131,21 @@ public class MainMenu extends Activity implements View.OnClickListener {
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
-        // Dean's code starts here:
-        testButton = (Button)findViewById(R.id.chooseTaskButton);
-        testButton.setOnClickListener(this);
-
+        /**
+         * This code casts the chooseTaskButton from the xml as a button, then assigns it to the chooseTaskButton. -Dean
+         */
+        chooseTaskButton = (Button)findViewById(R.id.chooseTaskButton);
+        /**
+         * The onClickListener that causes the button to take you to the next menu. -Dean
+         */
+        chooseTaskButton.setOnClickListener(this);
+        /**
+         * This code casts the assignTaskButton from the xml as a button, then assigns it to the assignTaskButton. -Dean
+         */
         assignTaskButton = (Button)findViewById(R.id.assignTaskButton);
+        /**
+         * The onclickListener that causes the button to take you to the next menu. -Dean
+         */
         assignTaskButton.setOnClickListener(this);
 
     }
@@ -171,23 +193,43 @@ public class MainMenu extends Activity implements View.OnClickListener {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-
-    private void testButtonClick() {
+    /**
+     * The onClickListener that takes you to the UserSelectionMenu. -Dean
+     */
+    private void chooseTaskButtonClick() {
         startActivity(new Intent("oakland.edu.gameforachange.UserSelectionMenu"));
     }
 
+    /**
+     * The onClickListener that takes you to the pRNG assigned menu.
+     */
     private void assignTaskButtonClick() {
         startActivity(new Intent("oakland.edu.gameforachange.AssignUserMenu"));
     }
-
+    /**
+     * This switch case is what handles all screen clicks. If the screen region clicked is -Dean
+     * a button, then the corresponding switch is run. Else, the default is run and nothing happens. -Dean
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            /**
+             * Case 1: The chooseTaskButton is clicked.
+             */
             case R.id.chooseTaskButton:
-                testButtonClick();
+                chooseTaskButtonClick();
                 break;
+            /**
+             * Case 2: The assignTaskButton is clicked.
+             */
             case R.id.assignTaskButton:
                 assignTaskButtonClick();
+                break;
+            /**
+             * Default: Something else was clicked. Do nothing.
+             */
+            default:
                 break;
         }
     }

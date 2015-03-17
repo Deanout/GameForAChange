@@ -36,7 +36,7 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     private ArrayList<Integer> assetVector = new ArrayList();
 
     ////////////////////////////////////////////////////////
-
+    public Calculate calculate = new Calculate();
     public String testRead;
     public String testWrite = "4";
     public String testWrite2 = "42";
@@ -65,7 +65,14 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
     }
 
+    /**
+     * Method used to decrease current score.
+     */
     private void btnDecreaseClick() {
+
+        calculate.decreaseScore(Splash.score);
+        System.out.println(Splash.score);
+
         try {
             FileOutputStream fos = openFileOutput("test.txt",
                     Context.MODE_APPEND | Context.MODE_WORLD_READABLE);

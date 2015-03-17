@@ -15,6 +15,7 @@ import android.widget.ImageView;
  */
 public class Splash extends Activity implements View.OnClickListener {
     public ImageView proceedButton;
+    public static int score = 0;
 
     /**
      * Creates the activity. -Dean

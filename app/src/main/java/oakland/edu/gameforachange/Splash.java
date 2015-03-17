@@ -1,10 +1,19 @@
 package oakland.edu.gameforachange;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by Dean on 2/21/2015.
@@ -15,7 +24,9 @@ import android.widget.ImageView;
  */
 public class Splash extends Activity implements View.OnClickListener {
     public ImageView proceedButton;
-    public static int score = 0;
+    public static int score = 10;
+
+
 
     /**
      * Creates the activity. -Dean
@@ -30,7 +41,7 @@ public class Splash extends Activity implements View.OnClickListener {
         setContentView(R.layout.splash);
 
         /**
-         * The proceed button is typecasted as ImageView, then assigned to the splashLogo ImageView -Dean
+         * The proceed button is typecast as ImageView, then assigned to the splashLogo ImageView -Dean
          */
         proceedButton = (ImageView)findViewById(R.id.splashLogo);
         /**

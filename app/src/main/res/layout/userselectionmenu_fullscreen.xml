@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff5b64cc"
+    android:background="#ff404040"
     android:gravity="bottom"
     android:weightSum="1">
 
@@ -22,7 +22,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="501dp"
                 android:id="@+id/taskSelectionBox"
-                android:choiceMode="singleChoice" />
+                android:choiceMode="singleChoice"
+                android:listSelector="#ff7da3ff"
+                android:smoothScrollbar="true"
+                android:clickable="true" />
         </LinearLayout>
     </ScrollView>
 
@@ -39,16 +42,10 @@
             android:layout_gravity="bottom"
             android:longClickable="false"
             android:layout_weight="0.5"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:background="#ff7da3ff"
+            android:textColor="#ffffff" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Assign Me A Task"
-            android:id="@+id/assignTaskButton"
-            android:layout_gravity="bottom"
-            android:layout_weight="0.5"
-            android:visibility="visible" />
     </LinearLayout>
 
 </LinearLayout>

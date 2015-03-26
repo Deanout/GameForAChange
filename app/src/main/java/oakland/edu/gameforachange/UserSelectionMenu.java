@@ -11,12 +11,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import oakland.edu.gameforachange.*;
 
 /**
  * Created by Dean on 2/21/2015.
@@ -25,7 +31,7 @@ import java.util.ArrayList;
  * @since v1.0 150221
  *
  */
-public class UserSelectionMenu extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class UserSelectionMenu extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener, Serializable {
     /**
      * Creates a button object named acceptTaskButton. -Dean
      */
@@ -56,8 +62,9 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      */
     public ArrayList<String> taskChoices = new ArrayList<>();
 
-    public Task task = new Task();
+    public static Task task = new Task();
     public String taskFile = "data.bin";
+    public String item = null;
 
 
     /**
@@ -152,14 +159,7 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
          * The onClickListener for the acceptTaskButton. -Dean
          */
         acceptTaskButton.setOnClickListener(this);
-        /**
-         * Casts the assignTaskButton as a button, then assigns it to assignTaskButton -Dean
-         */
-        assignTaskButton = (Button)findViewById(R.id.assignTaskButton);
-        /**
-         * The onClickListener for the assignTaskButton. -Dean
-         */
-        assignTaskButton.setOnClickListener(this);
+
 
 
     }
@@ -168,15 +168,18 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      * The acceptTaskButton onClickListener. Takes you to the CurrentTaskMenu. -Dean
      */
     private void acceptTaskClick() {
-        startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
-    }
 
-    /**
-     * The assignTaskButton onclickListener. Takes you to the AssignUserMenu. -Dean
-     */
-    private void assignTaskClick() {
-       startActivity(new Intent("oakland.edu.gameforachange.AssignUserMenu"));
-
+        /**
+         * If this button is clicked, task.exists = true.
+         */
+        if (task.task != null) {
+            startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
+            Toast.makeText(UserSelectionMenu.this, "Task Accepted!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        else {
+            Toast.makeText(UserSelectionMenu.this, "You haven't selected a task yet!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -199,14 +202,9 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
             case R.id.acceptTaskButton:
                 acceptTaskClick();
                 break;
+
             /**
-             * Case 2: The assignTaskButton is clicked. -Dean
-             */
-            case R.id.assignTaskButton:
-                assignTaskClick();
-                break;
-            /**
-             * Case 3: The ListView is clicked. -Dean
+             * Case 2: The ListView is clicked. -Dean
              */
             case R.id.taskSelectionBox:
                 taskSelectionClick();
@@ -228,25 +226,51 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      */
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+
+
+
         String item = adapter.getItemAtPosition(position).toString();
-        /**
-         * This if/else will test if the user already has a task. If the user does, then it should
-         * move to the next activity.
-         */
-        if (task.exists == true) {
-            Toast.makeText(UserSelectionMenu.this, "You already have an assigned task.", Toast.LENGTH_SHORT).show();
+        task.exists = true;
+
+        Toast.makeText(UserSelectionMenu.this, "You clicked on: " + item, Toast.LENGTH_SHORT).show();
+        task.task = item;
+        saveTask(task);
+    }
+
+    private void saveTask(Task t){
+        Task writeTask = t;
+
+        // Find the root of the external storage.
+        // See http://developer.android.com/guide/topics/data/data-  storage.html#filesExternal
+
+        File root = android.os.Environment.getExternalStorageDirectory();
+
+        // See http://stackoverflow.com/questions/3551821/android-write-to-sd-card-folder
+
+        File dir = new File (root.getAbsolutePath() + "/download");
+        dir.mkdirs();
+        File file = new File(dir, "TaskFile");
+
+        try {
+            FileOutputStream taskFile = new FileOutputStream(file);
+            ObjectOutputStream writeTaskObject = new ObjectOutputStream(taskFile);
+            writeTaskObject.writeObject(writeTask);
+            writeTaskObject.close();
+            taskFile.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else {
-            Toast.makeText(UserSelectionMenu.this, "You clicked on: " + item, Toast.LENGTH_SHORT).show();
-            task.task = item;
-            task.exists = true;
-            try {
-                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(taskFile));
-                os.writeObject(task);
-                os.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
+
+        /*try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(taskFile));
+            os.writeObject(task);
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
     }
 }

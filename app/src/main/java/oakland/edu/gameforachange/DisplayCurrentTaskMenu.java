@@ -1,23 +1,17 @@
 package oakland.edu.gameforachange;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -55,19 +49,11 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
         setContentView(R.layout.displaycurrenttaskmenu);
 
 
-        btnDecrease = (Button)findViewById(R.id.btnDecrease);
+        btnDecrease = (Button)findViewById(R.id.btnCompleteTask);
         btnDecrease.setOnClickListener(this);
 
-        btnIncrease = (Button)findViewById(R.id.btnIncrease);
+        btnIncrease = (Button)findViewById(R.id.btnCompleteTask);
         btnIncrease.setOnClickListener(this);
-
-        btnGetInt = (Button)findViewById(R.id.btnGetInt);
-        btnGetInt.setOnClickListener(this);
-
-        txtView = (TextView)findViewById(R.id.txtView);
-
-        //checkExternalMedia();
-
     }
 
 
@@ -75,60 +61,34 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     /**
      * Method used to decrease current score. -Dean
      */
-    private void btnDecreaseClick() {
-        counter = calculate.decreaseScore(counter);
+    private void btnCompleteTaskClick() {
+
+
+
+        /*counter = calculate.decreaseScore(counter);
         writeToSDFile(counter);
         txtView.append(Integer.toString(readFile()));
+        */
     }
 
-    private void btnIncreaseClick() {
+    private void btnAbandonTaskClick() {
         counter = calculate.increaseScore(counter);
         writeToSDFile(counter);
-        txtView.append(Integer.toString(readFile()));
-    }
-
-    private void btnGetIntClick() {
         txtView.append(Integer.toString(readFile()));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnDecrease:
-                btnDecreaseClick();
+            case R.id.btnCompleteTask:
+                btnCompleteTaskClick();
                 break;
-            case R.id.btnIncrease:
-                btnIncreaseClick();
-                break;
-            case R.id.btnGetInt:
-                btnGetIntClick();
+            case R.id.btnAbandonTask:
+                btnAbandonTaskClick();
                 break;
             default:
                 break;
         }
-    }
-
-    /**
-     * Used to test if the external file system can be accessed.
-     */
-    private void checkExternalMedia(){
-        boolean mExternalStorageAvailable = false;
-        boolean mExternalStorageWriteable = false;
-        String state = Environment.getExternalStorageState();
-
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            // Can read and write the media
-            mExternalStorageAvailable = mExternalStorageWriteable = true;
-        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            // Can only read the media
-            mExternalStorageAvailable = true;
-            mExternalStorageWriteable = false;
-        } else {
-            // Can't read or write
-            mExternalStorageAvailable = mExternalStorageWriteable = false;
-        }
-        txtView.append("\n\nExternal Media: readable="
-                + mExternalStorageAvailable + " writable=" + mExternalStorageWriteable);
     }
 
     /** Method to write ascii text characters to file on SD card. Note that you must add a

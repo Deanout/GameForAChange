@@ -25,10 +25,6 @@ public class MainMenu extends Activity implements View.OnClickListener {
      * This button takes you to the UserSelectionMenu. -Dean
      */
     public Button chooseTaskButton;
-    /**
-     * This button automatically assigns you a task based on a pRNG. -Dean
-     */
-    public Button assignTaskButton;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -140,15 +136,6 @@ public class MainMenu extends Activity implements View.OnClickListener {
          * The onClickListener that causes the button to take you to the next menu. -Dean
          */
         chooseTaskButton.setOnClickListener(this);
-        /**
-         * This code casts the assignTaskButton from the xml as a button, then assigns it to the assignTaskButton. -Dean
-         */
-        assignTaskButton = (Button)findViewById(R.id.assignTaskButton);
-        /**
-         * The onclickListener that causes the button to take you to the next menu. -Dean
-         */
-        assignTaskButton.setOnClickListener(this);
-
     }
 
     @Override
@@ -196,16 +183,15 @@ public class MainMenu extends Activity implements View.OnClickListener {
 
     /**
      * The onClickListener that takes you to the UserSelectionMenu. -Dean
+     * If you've already selected a task, will take you straight to the DisplayCurrentTaskMenu. -Dean
      */
     private void chooseTaskButtonClick() {
-        startActivity(new Intent("oakland.edu.gameforachange.UserSelectionMenu"));
-    }
-
-    /**
-     * The onClickListener that takes you to the pRNG assigned menu.
-     */
-    private void assignTaskButtonClick() {
-        startActivity(new Intent("oakland.edu.gameforachange.AssignUserMenu"));
+        if (!UserSelectionMenu.task.exists) {
+            startActivity(new Intent("oakland.edu.gameforachange.UserSelectionMenu"));
+        }
+        else {
+            startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
+        }
     }
     /**
      * This switch case is what handles all screen clicks. If the screen region clicked is -Dean
@@ -220,12 +206,6 @@ public class MainMenu extends Activity implements View.OnClickListener {
              */
             case R.id.chooseTaskButton:
                 chooseTaskButtonClick();
-                break;
-            /**
-             * Case 2: The assignTaskButton is clicked.
-             */
-            case R.id.assignTaskButton:
-                assignTaskButtonClick();
                 break;
             /**
              * Default: Something else was clicked. Do nothing.

@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#ff5b64cc"
+    android:layout_height="match_parent" android:background="#ff404040"
     tools:context=".FullscreenActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -11,7 +11,8 @@
          android:fitsSystemWindows. -->
 
     <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="#ff404040">
 
         <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
             android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -29,116 +30,71 @@
         <!-- The Button Bar -->
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="464dp"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:weightSum="1"
             android:layout_gravity="center_horizontal|top"
             android:id="@+id/taskButtons">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Choose Task"
-                android:id="@+id/chooseTaskButton"
-                android:layout_gravity="bottom"
-                android:longClickable="false"
-                android:layout_weight="0.5"
-                android:textColor="#ff101010"
-                android:background="#ffffffff" />
-
-            <Button
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Assign Me A Task"
-                android:id="@+id/assignTaskButton"
-                android:layout_gravity="bottom"
-                android:layout_weight="0.31"
-                android:background="#ffffffff"
-                android:textColor="#FF101010" />
-
-        </LinearLayout>
-        <!-- The Score Display -->
-        <!-- The Streak Display -->
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:showDividers="beginning"
-            android:id="@+id/streakDisplay"
-            android:weightSum="1"
-            android:focusableInTouchMode="false">
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="473dp">
+                android:layout_height="316dp"
+                android:background="#ff404040">
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/scoreDisplay"
-                    android:weightSum="1"
-                    android:focusableInTouchMode="false">
+                    android:layout_width="fill_parent"
+                    android:layout_height="294dp"
+                    android:background="#ff404040">
 
                     <TextView
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Streak:"
-                        android:id="@+id/streakText"
-                        android:background="#ff222f4e"
-                        android:layout_gravity="center_vertical" />
-
-                    <TextView
-                        android:layout_width="232dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@integer/userStreak"
-                        android:id="@+id/streakIntText"
-                        android:background="#ff4e4e4e"
-                        android:layout_gravity="center_vertical"
-                        android:inputType="number"
-                        android:autoText="false"
-                        android:padding="0dp"
-                        android:textStyle="bold"
-                        android:textAlignment="gravity"
-                        android:layout_weight="1" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="250dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Score:"
                         android:id="@+id/scoreText"
-                        android:background="#ff222f4e"
-                        android:layout_gravity="center_vertical" />
+                        android:autoText="true"
+                        android:enabled="true"
+                        android:focusableInTouchMode="false"
+                        android:textColor="#ffffffff"
+                        android:textSize="72dp"
+                        android:layout_weight=".5"
+                        android:background="#ff404040" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@integer/userScore"
                         android:id="@+id/scoreIntText"
-                        android:background="#ff4e4e4e"
-                        android:layout_gravity="center_vertical"
+                        android:background="#ff404040"
                         android:inputType="number"
                         android:autoText="false"
                         android:padding="0dp"
                         android:textStyle="bold"
                         android:textAlignment="gravity"
-                        android:layout_weight="1" />
+                        android:layout_weight=".5"
+                        android:textColor="#ffffff"
+                        android:textSize="72dp"
+                        android:text="42" />
+
                 </LinearLayout>
             </LinearLayout>
 
-
         </LinearLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Task"
+            android:id="@+id/chooseTaskButton"
+            android:layout_gravity="bottom"
+            android:longClickable="false"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:background="#ff7da3ff" />
+        <!-- The Score Display -->
+        <!-- The Streak Display -->
 
 
     </FrameLayout>

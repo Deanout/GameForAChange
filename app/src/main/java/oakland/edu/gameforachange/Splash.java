@@ -28,6 +28,7 @@ public class Splash extends Activity implements View.OnClickListener {
 
 
 
+
     /**
      * Creates the activity. -Dean
      * @param icicle
@@ -48,6 +49,10 @@ public class Splash extends Activity implements View.OnClickListener {
          * The ImageView is treated as a button with this onClickListener -Dean
          */
         proceedButton.setOnClickListener(this);
+
+
+
+
     }
 
 

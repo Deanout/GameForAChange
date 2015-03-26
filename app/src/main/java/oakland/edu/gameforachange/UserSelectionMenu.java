@@ -11,9 +11,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -53,6 +55,9 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      * The arrayList where the tasks are stored. -Dean
      */
     public ArrayList<String> taskChoices = new ArrayList<>();
+
+    public Task task = new Task();
+    public String taskFile = "data.bin";
 
 
     /**
@@ -155,6 +160,8 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
          * The onClickListener for the assignTaskButton. -Dean
          */
         assignTaskButton.setOnClickListener(this);
+
+
     }
 
     /**
@@ -222,6 +229,24 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
         String item = adapter.getItemAtPosition(position).toString();
-        Toast.makeText(UserSelectionMenu.this, "You clicked on: " + item, Toast.LENGTH_SHORT).show();
+        /**
+         * This if/else will test if the user already has a task. If the user does, then it should
+         * move to the next activity.
+         */
+        if (task.exists == true) {
+            Toast.makeText(UserSelectionMenu.this, "You already have an assigned task.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(UserSelectionMenu.this, "You clicked on: " + item, Toast.LENGTH_SHORT).show();
+            task.task = item;
+            task.exists = true;
+            try {
+                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(taskFile));
+                os.writeObject(task);
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

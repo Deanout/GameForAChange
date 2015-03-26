@@ -1,19 +1,12 @@
-package oakland.edu.gameforachange;
+package edu.oakland.gameforachange;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import com.facebook.appevents.AppEventsLogger;
 
 /**
  * Created by Dean on 2/21/2015.
@@ -48,7 +41,10 @@ public class Splash extends Activity implements View.OnClickListener {
          */
         proceedButton.setOnClickListener(this);
 
+
+
     }
+
 
 
     /**

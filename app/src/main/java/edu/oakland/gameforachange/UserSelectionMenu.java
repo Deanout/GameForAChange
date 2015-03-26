@@ -1,4 +1,4 @@
-package oakland.edu.gameforachange;
+package edu.oakland.gameforachange;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,15 +14,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import oakland.edu.gameforachange.*;
 
 /**
  * Created by Dean on 2/21/2015.

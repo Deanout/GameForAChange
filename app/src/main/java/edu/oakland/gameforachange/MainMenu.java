@@ -1,6 +1,6 @@
-package oakland.edu.gameforachange;
+package edu.oakland.gameforachange;
 
-import oakland.edu.gameforachange.util.SystemUiHider;
+import edu.oakland.gameforachange.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

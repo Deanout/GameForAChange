@@ -1,4 +1,4 @@
-package oakland.edu.gameforachange.util;
+package edu.oakland.gameforachange.util;
 
 import android.app.Activity;
 import android.os.Build;

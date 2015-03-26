@@ -1,11 +1,29 @@
-package oakland.edu.gameforachange;
+package edu.oakland.gameforachange;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookActivity;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookSdk;
+import com.facebook.HttpMethod;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.MessageDialog;
+import com.facebook.share.widget.ShareDialog;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,6 +48,10 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     private Button btnGetInt;
     private TextView txtView;
     private static final String TAG = "MEDIA";
+    private CallbackManager callBackManager;
+    private ShareDialog shareDialog;
+    String APP_ID = "400483653459879";
+
 
 
 
@@ -54,14 +76,25 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
         btnIncrease = (Button)findViewById(R.id.btnCompleteTask);
         btnIncrease.setOnClickListener(this);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        callBackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
     }
-
-
+    ///////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Method used to decrease current score. -Dean
      */
     private void btnCompleteTaskClick() {
+        Bitmap bitmap = takeScreenshot();
+        saveBitmap(bitmap);
+
+
+
+
+
 
 
 
@@ -70,6 +103,39 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
         txtView.append(Integer.toString(readFile()));
         */
     }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callBackManager.onActivityResult(requestCode, resultCode, data);
+
+    }
+
+
+    public Bitmap takeScreenshot() {
+        View rootView = findViewById(android.R.id.content).getRootView();
+        rootView.setDrawingCacheEnabled(true);
+        return rootView.getDrawingCache();
+    }
+
+    public void saveBitmap(Bitmap bitmap) {
+        File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(imagePath);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
+        }
+    }
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
 
     private void btnAbandonTaskClick() {
         counter = calculate.increaseScore(counter);

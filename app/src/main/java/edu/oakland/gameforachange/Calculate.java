@@ -1,4 +1,4 @@
-package oakland.edu.gameforachange;
+package edu.oakland.gameforachange;
 
 /**
  * Created by User on 3/17/2015.

@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="oakland.edu.gameforachange" >
+    package="edu.oakland.gameforachange" >
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <provider android:authorities="com.facebook.app.FacebookContentProvider400483653459879"
+        android:name="com.facebook.FacebookContentProvider"
+        android:exported="true"/>
+
+    <activity android:name="com.facebook.FacebookActivity"
+        android:configChanges=
+            "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        android:label="@string/app_name" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+
     <application
-
-
 
         android:allowBackup="true"
         android:icon="@drawable/gameforachange"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Splash"
+            android:name="edu.oakland.gameforachange.Splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -25,7 +35,7 @@
         </activity>
 
         <activity
-            android:name=".MainMenu"
+            android:name="edu.oakland.gameforachange.MainMenu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -37,7 +47,7 @@
         </activity>
 
         <activity
-            android:name=".UserSelectionMenu"
+            android:name="edu.oakland.gameforachange.UserSelectionMenu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -49,7 +59,7 @@
         </activity>
 
         <activity
-            android:name=".DisplayCurrentTaskMenu"
+            android:name="edu.oakland.gameforachange.DisplayCurrentTaskMenu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -62,5 +72,6 @@
 
 
     </application>
+
 
 </manifest>

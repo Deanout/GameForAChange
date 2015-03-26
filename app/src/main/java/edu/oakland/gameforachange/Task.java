@@ -1,4 +1,4 @@
-package oakland.edu.gameforachange;
+package edu.oakland.gameforachange;
 
 import java.io.Serializable;
 

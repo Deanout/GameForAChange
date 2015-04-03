@@ -3,6 +3,7 @@ package edu.oakland.gameforachange;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookActivity;
@@ -19,12 +21,15 @@ import com.facebook.FacebookSdk;
 import com.facebook.HttpMethod;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareOpenGraphAction;
+import com.facebook.share.model.ShareOpenGraphContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.MessageDialog;
 import com.facebook.share.widget.ShareDialog;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -50,9 +55,7 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     private static final String TAG = "MEDIA";
     private CallbackManager callBackManager;
     private ShareDialog shareDialog;
-    String APP_ID = "400483653459879";
-
-
+    private String APP_ID = "400483653459879";
 
 
     ////////////////////////////////////////////////////////
@@ -70,6 +73,8 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
         super.onCreate(icicle);
         setContentView(R.layout.displaycurrenttaskmenu);
 
+        txtView = (TextView)findViewById(R.id.txtCurrentTask);
+
 
         btnDecrease = (Button)findViewById(R.id.btnCompleteTask);
         btnDecrease.setOnClickListener(this);
@@ -81,6 +86,16 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
         callBackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
+
+
+
+    }
+
+    /**
+     * Method to read object? -Dean -WIP
+     */
+    public void setText() {
+        txtView.setText(readFile());
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,17 +106,26 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
         Bitmap bitmap = takeScreenshot();
         saveBitmap(bitmap);
 
-
-
-
-
-
-
-
-        /*counter = calculate.decreaseScore(counter);
+        Toast.makeText(DisplayCurrentTaskMenu.this, "Task Complete, Share Dialog Pops Up Now", Toast.LENGTH_SHORT).show();
+        counter = calculate.decreaseScore(counter);
         writeToSDFile(counter);
         txtView.append(Integer.toString(readFile()));
+        finish();
+        /*
+        if (shareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentTitle("Hello Facebook")
+                    .setContentDescription(
+                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
+                    .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                    .build();
+
+            shareDialog.show(linkContent);
+        }
         */
+
+
+
     }
 
     @Override

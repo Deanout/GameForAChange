@@ -5,4 +5,17 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="facebook_app_id">400483653459879</string>
+
+    <!--Facebook share intent Strings-->
+    <string name="title_activity_facebook_share">Facebook</string>
+    <string name="facebook_default_text">Please enter your text here</string>
+    <string name="title_post_text">Write Post</string>
+    <string name="post_button_text">Post</string>
+    <string name="title_facebook_login">Facebook Login</string>
+
+
+    <!--LIVE APP ID-->
+    <string name="app_id">400483653459879</string>
+    <string name="facebook_post_content_desc">Image to share</string>
+    <string name="app_package_name">edu.oakland.gameforachange.app</string>
 </resources>

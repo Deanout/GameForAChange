@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="223dp"
+        android:layout_weight="1.01"
+        android:background="#ff404040">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="279dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/txtCurrentTask"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:background="#ff404040"
         android:weightSum="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Abandon Task"
+            android:id="@+id/btnAbandonTask"
+            android:layout_gravity="center_vertical|bottom|right"
+            android:layout_weight="0.48"
+            android:background="#ff7da3ff"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="wrap_content"
@@ -20,15 +49,6 @@
             android:background="#ff7da3ff"
             android:textColor="#ffffff" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Abandon Task"
-            android:id="@+id/btnAbandonTask"
-            android:layout_gravity="center_vertical|bottom|right"
-            android:layout_weight="0.48"
-            android:background="#ff7da3ff"
-            android:textColor="#ffffff" />
     </LinearLayout>
 
 </LinearLayout>

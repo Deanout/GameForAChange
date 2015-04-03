@@ -17,7 +17,7 @@ import com.facebook.appevents.AppEventsLogger;
  */
 public class Splash extends Activity implements View.OnClickListener {
     public ImageView proceedButton;
-    public static int score = 10;
+    public static int score = 0;
 
 
     /**

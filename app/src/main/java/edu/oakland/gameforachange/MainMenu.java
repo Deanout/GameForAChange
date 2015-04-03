@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -21,6 +22,7 @@ import android.widget.Button;
  *
  */
 public class MainMenu extends Activity implements View.OnClickListener {
+    public TextView txtView;
     /**
      * This button takes you to the UserSelectionMenu. -Dean
      */
@@ -127,6 +129,8 @@ public class MainMenu extends Activity implements View.OnClickListener {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        txtView = (TextView) findViewById((R.id.scoreIntText));
+        txtView.setText(Integer.toString(Splash.score));
 
         /**
          * This code casts the chooseTaskButton from the xml as a button, then assigns it to the chooseTaskButton. -Dean

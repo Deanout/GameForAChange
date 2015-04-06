@@ -3,19 +3,10 @@ package edu.oakland.gameforachange;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.Scanner;
 
 /**
  * Created by Dean on 2/21/2015.
@@ -28,12 +19,13 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     /**
      * This class is largely still a WiP. No comments yet.
      */
-    private Button btnDecrease;
-    private Button btnIncrease;
+    private Button btnAbandonTask;
+    private Button btnCompleteTask;
     private TextView txtView;
     private static final String TAG = "MEDIA";
 
     public int counter;
+    public int completed;
 
 
 
@@ -50,25 +42,24 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
         txtView.setText("Current Task: " + Splash.task.getTask());
 
 
-        btnDecrease = (Button)findViewById(R.id.btnCompleteTask);
-        btnDecrease.setOnClickListener(this);
+        btnAbandonTask = (Button)findViewById(R.id.btnAbandonTask);
+        btnAbandonTask.setOnClickListener(this);
 
-        btnIncrease = (Button)findViewById(R.id.btnCompleteTask);
-        btnIncrease.setOnClickListener(this);
-
-        // txtView = (TextView) findViewById((R.id.txtScoreInt));
-        // txtView.setText(Integer.toString(Splash.task.getScore()));
-
+        btnCompleteTask = (Button)findViewById(R.id.btnCompleteTask);
+        btnCompleteTask.setOnClickListener(this);
     }
 
     private void btnCompleteTaskClick() {
-        Toast.makeText(DisplayCurrentTaskMenu.this, "Task Complete, Share Dialog Pops Up Now", Toast.LENGTH_SHORT).show();
+        Toast.makeText(DisplayCurrentTaskMenu.this, "Task Completed!", Toast.LENGTH_SHORT).show();
         counter = Splash.task.getScore();
         counter++;
         Splash.task.setScore(counter);
+
+        Splash.task.calculateCompletionRatio();
         Splash.task.setTaskExists(false);
         Splash.task.setTask(null);
         Splash.taskWriter.writeTask(Splash.task);
+
         startActivity(new Intent("oakland.edu.gameforachange.MainMenu"));
         finish();
 
@@ -78,7 +69,17 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private void btnAbandonTaskClick() {
+        Toast.makeText(DisplayCurrentTaskMenu.this, "Task Abandoned...", Toast.LENGTH_SHORT).show();
+        counter = Splash.task.getScore();
+        Splash.task.setScore(counter);
 
+        Splash.task.calculateCompletionRatio();
+        Splash.task.setTaskExists(false);
+        Splash.task.setTask(null);
+        Splash.taskWriter.writeTask(Splash.task);
+
+        startActivity(new Intent("oakland.edu.gameforachange.MainMenu"));
+        finish();
     }
 
     @Override

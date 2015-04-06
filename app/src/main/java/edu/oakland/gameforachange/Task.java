@@ -2,38 +2,32 @@ package edu.oakland.gameforachange;
 
 import java.io.Serializable;
 
-/**
- * Created by User on 3/25/2015.
- */
-
-import java.io.Serializable;
 
 /**
- * Created by User on 3/25/2015.
+ * Created by Dean on 3/25/2015.
  */
 public class Task implements Serializable {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = -7395222581084443899L;
     private int score = 0;
     private String task;
     private boolean firstRun = true;
-    private boolean taskComplete = false;
     private boolean exists = false;
-    private int completionRatio = 0;
+    private double completionRatio = 0;
+    private int tasksAccepted = 0;
+
 
     public Task() {
 
     }
 
-    public Task(int s, int cR, String t, boolean fr, boolean tc, boolean e) {
+    public Task(int s, double cR, int tA, String t, boolean fr, boolean e) {
         this.score = s;
         this.task = t;
         this.firstRun = fr;
-        this.taskComplete = tc;
         this.exists = e;
         this.completionRatio = cR;
+        this.tasksAccepted = tA;
     }
 
     public Task(int s, String t) {
@@ -41,9 +35,13 @@ public class Task implements Serializable {
         this.task = t;
     }
 
-    public void setCompletionRatio(int n) {
-        this.completionRatio = n;
+    public void setTasksAccepted(int n) {
+        this.tasksAccepted += n;
     }
+    public void calculateCompletionRatio() {
+        this.completionRatio = (this.score/this.tasksAccepted);
+    }
+
 
     public void setTask(String s) {
         this.task = s;
@@ -55,13 +53,7 @@ public class Task implements Serializable {
     public void setFirstRun(boolean b) {
         this.firstRun = b;
     }
-    /**
-     * Used to flag a task as complete.
-     * @param b
-     */
-    public void setTaskStatus(boolean b) {
-        this.taskComplete = b;
-    }
+
     /**
      *
      * @param b
@@ -72,6 +64,12 @@ public class Task implements Serializable {
 
     public void setScore(int n) {
         this.score = n;
+    }
+    public int getTasksAccepted() {
+        return tasksAccepted;
+    }
+    public double getCompletionRatio() {
+        return completionRatio;
     }
     public String getTask() {
         return task;
@@ -90,20 +88,9 @@ public class Task implements Serializable {
      *
      * @return
      */
-    public boolean getTaskComplete() {
-        return taskComplete;
-    }
-    /**
-     *
-     * @return
-     */
+
     public boolean getExist() {
         return exists;
     }
-    /**
-     * Test method.
-     */
-    public void printStuff() {
-        System.out.println(task);
-    }
+
 }

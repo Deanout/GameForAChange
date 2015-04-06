@@ -14,92 +14,8 @@
         android:fitsSystemWindows="true"
         android:background="#ff404040">
 
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
-            android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
 
-            <Button android:id="@+id/dummy_button" style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="@string/dummy_button"
-                android:nestedScrollingEnabled="false"
-                android:visibility="gone" />
-
-        </LinearLayout>
         <!-- The Button Bar -->
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:weightSum="1"
-            android:layout_gravity="center_horizontal|top"
-            android:id="@+id/taskButtons">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="316dp"
-                android:background="#ff404040"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="294dp"
-                    android:background="#ff404040">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Score:"
-                        android:id="@+id/txtScoreText"
-                        android:autoText="true"
-                        android:enabled="true"
-                        android:focusableInTouchMode="false"
-                        android:textColor="#ffffffff"
-                        android:textSize="72dp"
-                        android:background="#ff404040" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/txtScoreInt"
-                        android:background="#ff404040"
-                        android:inputType="number"
-                        android:autoText="false"
-                        android:padding="0dp"
-                        android:textStyle="bold"
-                        android:textAlignment="gravity"
-                        android:layout_weight="8.75"
-                        android:textColor="#ffffff"
-                        android:textSize="72dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Choose Task"
-                android:id="@+id/chooseTaskButton"
-                android:layout_gravity="bottom"
-                android:longClickable="false"
-                android:layout_weight=".5"
-                android:textColor="#ffffff"
-                android:background="#ff7da3ff" />
-        </LinearLayout>
 
         <!-- The Score Display -->
         <!-- The Streak Display -->
@@ -107,11 +23,102 @@
 
     </FrameLayout>
 
-    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="269dp" android:keepScreenOn="true" android:textColor="#33b5e5"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/dummy_content"
-        android:layout_gravity="right|top"
-        android:visibility="gone" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="316dp"
+        android:background="#ff404040"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff404040">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Score:"
+                android:id="@+id/txtScoreText"
+                android:autoText="true"
+                android:enabled="true"
+                android:focusableInTouchMode="false"
+                android:textColor="#ffffffff"
+                android:textSize="72dp"
+                android:background="#ff404040" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/txtScoreInt"
+                android:background="#ff404040"
+                android:inputType="number"
+                android:autoText="false"
+                android:padding="0dp"
+                android:textStyle="bold"
+                android:textAlignment="gravity"
+                android:layout_weight="8.75"
+                android:textColor="#ffffff"
+                android:textSize="48dp"
+                android:textIsSelectable="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Completion Rate:"
+                android:id="@+id/textView"
+                android:autoText="true"
+                android:enabled="true"
+                android:focusableInTouchMode="false"
+                android:textColor="#ffffffff"
+                android:textSize="36dp"
+                android:background="#ff404040" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/txtCompletionRatio"
+                android:background="#ff404040"
+                android:inputType="number"
+                android:autoText="false"
+                android:padding="0dp"
+                android:textStyle="bold"
+                android:textAlignment="gravity"
+                android:layout_weight="8.75"
+                android:textColor="#ffffff"
+                android:textSize="48dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseTaskButton"
+            android:layout_gravity="bottom"
+            android:longClickable="false"
+            android:layout_weight=".5"
+            android:textColor="#ffffff"
+            android:background="#ff7da3ff" />
+    </LinearLayout>
+
 
 </FrameLayout>

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
- * Created by User on 4/6/2015.
+ * Created by Dean on 4/6/2015.
  */
 public class TaskWriter {
 

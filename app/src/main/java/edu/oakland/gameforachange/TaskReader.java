@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import edu.oakland.gameforachange.Task;
 
 /**
- * Created by User on 4/6/2015.
+ * Created by Dean on 4/6/2015.
  */
 public class TaskReader {
 

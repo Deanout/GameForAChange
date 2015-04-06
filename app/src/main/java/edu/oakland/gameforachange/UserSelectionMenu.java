@@ -169,6 +169,7 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
         if (Splash.task.getExist()) {
             Splash.task.setTask(item);
             Splash.task.setTaskExists(true);
+            Splash.task.setTasksAccepted(1);
             Splash.taskWriter.writeTask(Splash.task);
             startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
             Toast.makeText(UserSelectionMenu.this, "Task Accepted!", Toast.LENGTH_SHORT).show();

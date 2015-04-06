@@ -1,27 +1,13 @@
 package edu.oakland.gameforachange;
 
-import edu.oakland.gameforachange.util.SystemUiHider;
-
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.text.DecimalFormat;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-
-import java.util.Arrays;
 
 
 /**
@@ -38,6 +24,9 @@ public class MainMenu extends Activity implements View.OnClickListener {
      * This button takes you to the UserSelectionMenu. -Dean
      */
     public Button chooseTaskButton;
+    public String completionRatio;
+    DecimalFormat df = new DecimalFormat("##0.00");
+
 
 
     /**
@@ -59,6 +48,9 @@ public class MainMenu extends Activity implements View.OnClickListener {
 
         txtCompletionRatio = (TextView) findViewById(R.id.txtCompletionRatio);
         txtCompletionRatio.setText(Double.toString(Splash.task.getCompletionRatio()));
+        txtCompletionRatio.setText(String.valueOf(df.format(Splash.task.getCompletionRatio())));
+
+
 
         /**
          * This code casts the chooseTaskButton from the xml as a button, then assigns it to the chooseTaskButton. -Dean

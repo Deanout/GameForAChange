@@ -22,10 +22,8 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     private Button btnAbandonTask;
     private Button btnCompleteTask;
     private TextView txtView;
-    private static final String TAG = "MEDIA";
 
     public int counter;
-    public int completed;
 
 
 
@@ -70,8 +68,7 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
     private void btnAbandonTaskClick() {
         Toast.makeText(DisplayCurrentTaskMenu.this, "Task Abandoned...", Toast.LENGTH_SHORT).show();
-        counter = Splash.task.getScore();
-        Splash.task.setScore(counter);
+
 
         Splash.task.calculateCompletionRatio();
         Splash.task.setTaskExists(false);

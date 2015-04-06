@@ -1,7 +1,7 @@
 package edu.oakland.gameforachange;
 
-import java.io.Serializable;
 
+import java.io.Serializable;
 
 /**
  * Created by Dean on 3/25/2015.
@@ -13,8 +13,8 @@ public class Task implements Serializable {
     private String task;
     private boolean firstRun = true;
     private boolean exists = false;
-    private double completionRatio = 0;
     private int tasksAccepted = 0;
+    private double completionRatio = 0;
 
 
     public Task() {
@@ -39,7 +39,8 @@ public class Task implements Serializable {
         this.tasksAccepted += n;
     }
     public void calculateCompletionRatio() {
-        this.completionRatio = (this.score/this.tasksAccepted);
+        this.completionRatio = ((double)score) / tasksAccepted;
+
     }
 
 

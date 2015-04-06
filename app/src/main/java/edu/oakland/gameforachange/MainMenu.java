@@ -13,6 +13,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
+import java.util.Arrays;
+
 
 /**
  * Created by Dean on 2/21/2015.
@@ -129,8 +139,8 @@ public class MainMenu extends Activity implements View.OnClickListener {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        txtView = (TextView) findViewById((R.id.scoreIntText));
-        txtView.setText(Integer.toString(Splash.score));
+        txtView = (TextView) findViewById((R.id.txtScoreInt));
+        txtView.setText(Integer.toString(Splash.task.getScore()));
 
         /**
          * This code casts the chooseTaskButton from the xml as a button, then assigns it to the chooseTaskButton. -Dean
@@ -140,6 +150,8 @@ public class MainMenu extends Activity implements View.OnClickListener {
          * The onClickListener that causes the button to take you to the next menu. -Dean
          */
         chooseTaskButton.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -190,13 +202,17 @@ public class MainMenu extends Activity implements View.OnClickListener {
      * If you've already selected a task, will take you straight to the DisplayCurrentTaskMenu. -Dean
      */
     private void chooseTaskButtonClick() {
-        if (!UserSelectionMenu.task.exists) {
+        if (!Splash.task.getExist()) {
             startActivity(new Intent("oakland.edu.gameforachange.UserSelectionMenu"));
+            finish();
         }
         else {
             startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
+            finish();
         }
     }
+
+
     /**
      * This switch case is what handles all screen clicks. If the screen region clicked is -Dean
      * a button, then the corresponding switch is run. Else, the default is run and nothing happens. -Dean
@@ -218,4 +234,5 @@ public class MainMenu extends Activity implements View.OnClickListener {
                 break;
         }
     }
+
 }

@@ -58,9 +58,6 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      * The arrayList where the tasks are stored. -Dean
      */
     public ArrayList<String> taskChoices = new ArrayList<>();
-
-    public static Task task = new Task();
-    public String taskFile = "data.bin";
     public String item = null;
 
 
@@ -169,7 +166,10 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
         /**
          * If this button is clicked, task.exists = true.
          */
-        if (task.task != null) {
+        if (Splash.task.getExist()) {
+            Splash.task.setTask(item);
+            Splash.task.setTaskExists(true);
+            Splash.taskWriter.writeTask(Splash.task);
             startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
             Toast.makeText(UserSelectionMenu.this, "Task Accepted!", Toast.LENGTH_SHORT).show();
             finish();
@@ -226,48 +226,12 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
 
 
 
-        String item = adapter.getItemAtPosition(position).toString();
-        task.exists = true;
+        this.item = adapter.getItemAtPosition(position).toString();
+        Splash.task.setTaskExists(true);
 
         Toast.makeText(UserSelectionMenu.this, "You clicked on: " + item, Toast.LENGTH_SHORT).show();
-        task.task = item;
-        saveTask(task);
-    }
-
-    private void saveTask(Task t){
-        Task writeTask = t;
-
-        // Find the root of the external storage.
-        // See http://developer.android.com/guide/topics/data/data-  storage.html#filesExternal
-
-        File root = android.os.Environment.getExternalStorageDirectory();
-
-        // See http://stackoverflow.com/questions/3551821/android-write-to-sd-card-folder
-
-        File dir = new File (root.getAbsolutePath() + "/download");
-        dir.mkdirs();
-        File file = new File(dir, "TaskFile");
-
-        try {
-            FileOutputStream taskFile = new FileOutputStream(file);
-            ObjectOutputStream writeTaskObject = new ObjectOutputStream(taskFile);
-            writeTaskObject.writeObject(writeTask);
-            writeTaskObject.close();
-            taskFile.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        /*try {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(taskFile));
-            os.writeObject(task);
-            os.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        Splash.task.setTask(item);
 
     }
+
 }

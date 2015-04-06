@@ -1,12 +1,15 @@
 package edu.oakland.gameforachange;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.facebook.appevents.AppEventsLogger;
+import java.io.File;
+
+
 
 /**
  * Created by Dean on 2/21/2015.
@@ -16,9 +19,13 @@ import com.facebook.appevents.AppEventsLogger;
  *
  */
 public class Splash extends Activity implements View.OnClickListener {
+    public TaskReader taskReader;
+    public static TaskWriter taskWriter;
     public ImageView proceedButton;
     public static int score = 0;
-
+    public static Task task;
+    public static File root = android.os.Environment.getExternalStorageDirectory();
+    public static File dir = new File (root.getAbsolutePath() + "/download");
 
     /**
      * Creates the activity. -Dean
@@ -40,10 +47,20 @@ public class Splash extends Activity implements View.OnClickListener {
          * The ImageView is treated as a button with this onClickListener -Dean
          */
         proceedButton.setOnClickListener(this);
-
+        taskReader.readTask();
+        if (task == null) {
+            task = new Task();
+            taskWriter.writeTask(task);
+        }
+        else {
+            task.setFirstRun(false);
+            score = task.getScore();
+        }
 
 
     }
+
+
 
 
 

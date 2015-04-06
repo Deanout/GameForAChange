@@ -40,7 +40,8 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="316dp"
-                android:background="#ff404040">
+                android:background="#ff404040"
+                android:weightSum="1">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -53,45 +54,53 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Score:"
-                        android:id="@+id/scoreText"
+                        android:id="@+id/txtScoreText"
                         android:autoText="true"
                         android:enabled="true"
                         android:focusableInTouchMode="false"
                         android:textColor="#ffffffff"
                         android:textSize="72dp"
-                        android:layout_weight=".5"
                         android:background="#ff404040" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/scoreIntText"
+                        android:id="@+id/txtScoreInt"
                         android:background="#ff404040"
                         android:inputType="number"
                         android:autoText="false"
                         android:padding="0dp"
                         android:textStyle="bold"
                         android:textAlignment="gravity"
-                        android:layout_weight=".5"
+                        android:layout_weight="8.75"
                         android:textColor="#ffffff"
                         android:textSize="72dp" />
 
                 </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
-        <Button
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose Task"
-            android:id="@+id/chooseTaskButton"
-            android:layout_gravity="bottom"
-            android:longClickable="false"
-            android:layout_weight="1"
-            android:textColor="#ffffff"
-            android:background="#ff7da3ff" />
+            android:layout_height="60dp"
+            android:layout_gravity="bottom">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Task"
+                android:id="@+id/chooseTaskButton"
+                android:layout_gravity="bottom"
+                android:longClickable="false"
+                android:layout_weight=".5"
+                android:textColor="#ffffff"
+                android:background="#ff7da3ff" />
+        </LinearLayout>
+
         <!-- The Score Display -->
         <!-- The Streak Display -->
 

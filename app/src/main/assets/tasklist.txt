@@ -1,4 +1,4 @@
-Buy Dean 4 foods
+Buy Dean some food
 Green - Bring reusable bags instead of plastic bags to store
 Green - Go out of your way to recycle
 Green - Pick up X pieces of litter
@@ -15,4 +15,3 @@ Roommate - Vacuum!
 Seasonal - Clean snow off someones car or rake Neighbor's leaves
 Seasonal - Shovel Neighbors Driveway or Mow their law
 Take out neighbor's trash for them
-This list is not the final task list. It is only enough to display the scroll functionality.

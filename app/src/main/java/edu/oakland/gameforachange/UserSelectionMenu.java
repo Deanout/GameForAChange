@@ -1,6 +1,8 @@
 package edu.oakland.gameforachange;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,10 +38,6 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      */
     private ListView taskSelection;
     /**
-     * The assignTaskButton, where you will be assigned a task based on the pRNG. -Dean
-     */
-    public Button assignTaskButton;
-    /**
      * Used to read from the asset file containing the list of tasks. -Dean
      */
     public InputStream input;
@@ -55,8 +53,24 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
     /**
      * The arrayList where the tasks are stored. -Dean
      */
-    public ArrayList<String> taskChoices = new ArrayList<>();
+    public static ArrayList<String> taskChoices = new ArrayList<>();
     public String item = null;
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    acceptTaskClick();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
 
 
     /**
@@ -164,7 +178,6 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
         /**
          * If this button is clicked, task.exists = true.
          */
-        if (Splash.task.getExist()) {
             Splash.task.setTask(item);
             Splash.task.setTaskExists(true);
             Splash.task.setTasksAccepted(1);
@@ -172,16 +185,21 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
             startActivity(new Intent("oakland.edu.gameforachange.DisplayCurrentTaskMenu"));
             Toast.makeText(UserSelectionMenu.this, "Task Accepted!", Toast.LENGTH_SHORT).show();
             finish();
-        }
-        else {
-            Toast.makeText(UserSelectionMenu.this, "You haven't selected a task yet!", Toast.LENGTH_SHORT).show();
-        }
+
+
     }
 
     /**
      * The taskSelection ListView onClickListener. Current does nothing, should save string to file. -Dean
      */
     private void taskSelectionClick() {
+
+    }
+
+    private void confirmDiag() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserSelectionMenu.this);
+        builder.setMessage("Are you sure you're okay with: " + Splash.task.getTask() + "?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No, let me pick again.", dialogClickListener).show();
 
     }
     /**
@@ -196,7 +214,12 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
              * Case 1: The acceptTaskButton is clicked. -Dean
              */
             case R.id.acceptTaskButton:
-                acceptTaskClick();
+                if (Splash.task.getExist()) {
+                    confirmDiag();
+                }
+                else {
+                    Toast.makeText(UserSelectionMenu.this, "You haven't selected a task yet!", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             /**
@@ -222,8 +245,6 @@ public class UserSelectionMenu extends Activity implements View.OnClickListener,
      */
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-
-
 
         this.item = adapter.getItemAtPosition(position).toString();
         Splash.task.setTaskExists(true);

@@ -25,9 +25,32 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     private Button btnAbandonTask;
     private Button btnCompleteTask;
     private TextView txtView;
-    private static Context context;
+    private int userChoice;
 
     public int counter;
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    if (userChoice == 1) {
+                        btnCompleteTaskClick();
+                    }
+                    else if (userChoice == 2) {
+                        btnAbandonTaskClick();
+                    }
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
+
+
 
 
 
@@ -49,6 +72,7 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
         btnCompleteTask = (Button)findViewById(R.id.btnCompleteTask);
         btnCompleteTask.setOnClickListener(this);
+
     }
 
     private void btnCompleteTaskClick() {
@@ -79,9 +103,12 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
         startActivity(new Intent("oakland.edu.gameforachange.MainMenu"));
         finish();
+    }
 
-
-
+    private void confirmDiag() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplayCurrentTaskMenu.this);
+        builder.setMessage("Are you sure you meant to do that?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
 
     }
 
@@ -89,10 +116,12 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCompleteTask:
-                btnCompleteTaskClick();
+                userChoice = 1;
+                confirmDiag();
                 break;
             case R.id.btnAbandonTask:
-                btnAbandonTaskClick();
+                userChoice = 2;
+                confirmDiag();
                 break;
             default:
                 break;

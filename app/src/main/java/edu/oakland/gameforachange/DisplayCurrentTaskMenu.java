@@ -1,6 +1,9 @@
 package edu.oakland.gameforachange;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +25,7 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
     private Button btnAbandonTask;
     private Button btnCompleteTask;
     private TextView txtView;
+    private static Context context;
 
     public int counter;
 
@@ -68,8 +72,6 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
     private void btnAbandonTaskClick() {
         Toast.makeText(DisplayCurrentTaskMenu.this, "Task Abandoned...", Toast.LENGTH_SHORT).show();
-
-
         Splash.task.calculateCompletionRatio();
         Splash.task.setTaskExists(false);
         Splash.task.setTask(null);
@@ -77,6 +79,10 @@ public class DisplayCurrentTaskMenu extends Activity implements View.OnClickList
 
         startActivity(new Intent("oakland.edu.gameforachange.MainMenu"));
         finish();
+
+
+
+
     }
 
     @Override
